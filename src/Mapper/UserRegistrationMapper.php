@@ -4,7 +4,7 @@ namespace HtUserRegistration\Mapper;
 use ZfcUser\Entity\UserInterface;
 use ZfcBase\Mapper\AbstractDbMapper;
 use HtUserRegistration\Entity\UserRegistrationInterface;
-use Zend\Stdlib\Hydrator\HydratorInterface;
+use Zend\Hydrator\HydratorInterface;
 
 class UserRegistrationMapper extends AbstractDbMapper implements UserRegistrationMapperInterface
 {
