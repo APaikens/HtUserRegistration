@@ -3,7 +3,7 @@ namespace HtUserRegistration\Mapper;
 
 use ZfcUser\Entity\UserInterface;
 use HtUserRegistration\Entity\UserRegistration;
-use Zend\Stdlib\Hydrator\HydratorInterface;
+use Zend\Hydrator\HydratorInterface;
 
 interface UserRegistrationMapperInterface
 {
