@@ -28,14 +28,22 @@ class UserRegistrationController extends AbstractActionController
      */
     protected $options;
 
+
+    protected $setPasswordForm;
+
     /**
      * Constructor
      *
      * @param UserRegistrationServiceInterface $userRegistrationService
      */
-    public function __construct(UserRegistrationServiceInterface $userRegistrationService)
+    public function __construct(UserRegistrationServiceInterface $userRegistrationService, 
+            $passwordForm, $userMapper, $userRegistrationMapper, $moduleOptions)
     {
         $this->userRegistrationService = $userRegistrationService;
+        $this->setPasswordForm = $passwordForm;
+        $this->userMapper = $userMapper;
+        $this->userRegistrationMapper = $userRegistrationMapper;
+        $this->options = $moduleOptions;
     }
 
     /**
@@ -99,7 +107,7 @@ class UserRegistrationController extends AbstractActionController
             return $this->redirectToPostVerificationRoute();
         }
 
-        $form = $this->getServiceLocator()->get('HtUserRegistration\SetPasswordForm');
+        $form = $this->setPasswordForm;
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost());
@@ -121,10 +129,6 @@ class UserRegistrationController extends AbstractActionController
      */
     protected function getUserMapper()
     {
-        if (!$this->userMapper) {
-            $this->userMapper = $this->getServiceLocator()->get('zfcuser_user_mapper');
-        }
-
         return $this->userMapper;
     }
 
@@ -133,19 +137,11 @@ class UserRegistrationController extends AbstractActionController
      */
     protected function getUserRegistrationMapper()
     {
-        if (!$this->userRegistrationMapper instanceof UserRegistrationMapperInterface) {
-            $this->userRegistrationMapper = $this->getServiceLocator()->get('HtUserRegistration\UserRegistrationMapper');
-        }
-
         return $this->userRegistrationMapper;
     }
 
     protected function getOptions()
     {
-        if (!$this->options) {
-            $this->options = $this->getServiceLocator()->get('HtUserRegistration\ModuleOptions');
-        }
-
         return $this->options;
     }
 
