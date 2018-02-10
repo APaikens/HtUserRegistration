@@ -7,9 +7,9 @@ use Zend\ServiceManager\FactoryInterface;
 
 class SetPasswordFormFactory implements FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = null)
     {
-        $changePasswordForm = $serviceLocator->get('zfcuser_change_password_form');
+        $changePasswordForm = $container->get('zfcuser_change_password_form');
         $form = clone $changePasswordForm;
         foreach (array('identity', 'credential') as $field) {
             $form->remove($field);
@@ -17,5 +17,16 @@ class SetPasswordFormFactory implements FactoryInterface
         }
 
         return $form;
+    }
+
+    /**
+     * Create service
+     *
+     * @param ServiceLocatorInterface $serviceLocator
+     * @return mixed
+     */
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
+        return $this->__Invoke($serviceLocator,null);
     }
 }
