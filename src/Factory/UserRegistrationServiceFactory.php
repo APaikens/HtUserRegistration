@@ -7,14 +7,25 @@ use HtUserRegistration\Service\UserRegistrationService;
 
 class UserRegistrationServiceFactory implements FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = null)
     {
         return new UserRegistrationService(
-            $serviceLocator->get('HtUserRegistration\UserRegistrationMapper'),
-            $serviceLocator->get('HtUserRegistration\ModuleOptions'),
-            $serviceLocator->get('HtUserRegistration\Mailer\Mailer'),
-            $serviceLocator->get('zfcuser_user_mapper'),
-            $serviceLocator->get('zfcuser_module_options')
+            $container->get('HtUserRegistration\UserRegistrationMapper'),
+            $container->get('HtUserRegistration\ModuleOptions'),
+            $container->get('HtUserRegistration\Mailer\Mailer'),
+            $container->get('zfcuser_user_mapper'),
+            $container->get('zfcuser_module_options')
         );
+    }
+
+    /**
+     * Create service
+     *
+     * @param ServiceLocatorInterface $serviceLocator
+     * @return mixed
+     */
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
+        return $this->__Invoke($serviceLocator,null);
     }
 }
