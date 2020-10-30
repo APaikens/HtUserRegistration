@@ -2,13 +2,13 @@
 namespace HtUserRegistration\Service;
 
 use HtUserRegistration\Mapper\UserRegistrationMapperInterface;
-use Zend\EventManager\EventInterface;
+use Laminas\EventManager\EventInterface;
 use ZfcUser\Entity\UserInterface;
 use ZfcBase\EventManager\EventProvider;
 use DateTime;
 use HtUserRegistration\Entity\UserRegistrationInterface;
 use HtUserRegistration\Mailer\MailerInterface;
-use Zend\Crypt\Password\Bcrypt;
+use Laminas\Crypt\Password\Bcrypt;
 use HtUserRegistration\Options\ModuleOptions;
 use ZfcUser\Options\ModuleOptions as ZfcUserOptions;
 use ZfcUser\Mapper\UserInterface as UserMapperInterface;

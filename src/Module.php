@@ -1,11 +1,11 @@
 <?php
 namespace HtUserRegistration;
 
-use Zend\EventManager\EventInterface;
-use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
-use Zend\ModuleManager\Feature\BootstrapListenerInterface;
-use Zend\ModuleManager\Feature\ConfigProviderInterface;
-use Zend\ModuleManager\Feature\ServiceProviderInterface;
+use Laminas\EventManager\EventInterface;
+use Laminas\ModuleManager\Feature\AutoloaderProviderInterface;
+use Laminas\ModuleManager\Feature\BootstrapListenerInterface;
+use Laminas\ModuleManager\Feature\ConfigProviderInterface;
+use Laminas\ModuleManager\Feature\ServiceProviderInterface;
 
 class Module implements 
     BootstrapListenerInterface,
@@ -18,7 +18,7 @@ class Module implements
      */
     public function onBootstrap(EventInterface $e)
     {
-        /** @var \Zend\Mvc\Application */
+        /** @var \Laminas\Mvc\Application */
         $application    = $e->getParam('application');
         $eventManager   = $application->getEventManager();
         $sharedManager  = $eventManager->getSharedManager();
@@ -43,7 +43,7 @@ class Module implements
     public function getAutoloaderConfig()
     {
         return [
-            'Zend\Loader\StandardAutoloader' => [
+            'Laminas\Loader\StandardAutoloader' => [
                 'namespaces' => [
                     __NAMESPACE__ => __DIR__,
                 ],
@@ -62,11 +62,11 @@ class Module implements
                 'HtUserRegistration\UserRegistrationMapper' => 'HtUserRegistration\Factory\UserRegistrationMapperFactory',
                 'HtUserRegistration\UserRegistrationService' => 'HtUserRegistration\Factory\UserRegistrationServiceFactory',
                 'HtUserRegistration\SetPasswordForm' => 'HtUserRegistration\Factory\SetPasswordFormFactory',
-                'HtUserRegistration\Authentication\Adapter\EmailVerification' => 'HtUserRegistration\Authentication\Adapter\EmailVerificationFactory',
+                'HtUserRegistration\Authentication\Adapter\EmailVerification' => 'HtUserRegistration\Authentication\Adapter\Factory\EmailVerificationFactory',
                 'HtUserRegistration\Mailer\Mailer' => 'HtUserRegistration\Factory\MailerFactory',
             ],
             'aliases' => [
-                'HtUserRegistration\DbAdapter' => 'Zend\Db\Adapter\Adapter'
+                'HtUserRegistration\DbAdapter' => 'Laminas\Db\Adapter\Adapter'
             ],
             'invokables' => [
                 'HtUserRegistration\UserRegistrationHydrator' => 'HtUserRegistration\Stdlib\Hydrator\UserRegistrationHydrator'

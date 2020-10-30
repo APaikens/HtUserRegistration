@@ -28,7 +28,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
 
         $this->user = $this->getMock('ZfcUser\Entity\UserInterface');
 
-        $this->message = $this->getMock('Zend\Mail\Message');
+        $this->message = $this->getMock('Laminas\Mail\Message');
 
         $this->registrationRecord->expects($this->once())
                 ->method('getUser')

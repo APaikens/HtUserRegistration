@@ -29,7 +29,7 @@ class UserRegistrationServiceTest extends \PHPUnit_Framework_TestCase
         $this->zfcUserOptions = $this->getMock('ZfcUser\Options\ModuleOptions');
         $this->zfcUserEntity = $this->getMock('ZfcUser\Entity\UserInterface');
 
-        $this->event = $this->getMock('Zend\EventManager\EventInterface');
+        $this->event = $this->getMock('Laminas\EventManager\EventInterface');
 
         $this->userRegistrationService = new UserRegistrationService($this->userRegistrationMapper, $this->userRegistrationOptions, $this->userRegistrationMailer, $this->zfcUserMapper, $this->zfcUserOptions);
     }

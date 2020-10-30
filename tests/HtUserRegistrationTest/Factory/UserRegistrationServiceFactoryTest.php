@@ -1,7 +1,7 @@
 <?php
 namespace HtUserRegistrationTest\Factory;
 
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceManager;
 use HtUserRegistration\Factory\UserRegistrationServiceFactory;
 
 class UserRegistrationServiceFactoryTest extends \PHPUnit_Framework_TestCase

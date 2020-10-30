@@ -1,9 +1,9 @@
 <?php
 namespace HtUserRegistration\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 use HtUserRegistration\Service\UserRegistrationServiceInterface;
-use Zend\View\Model\ViewModel;
+use Laminas\View\Model\ViewModel;
 use HtUserRegistration\Mapper\UserRegistrationMapperInterface;
 
 class UserRegistrationController extends AbstractActionController

@@ -3,7 +3,7 @@ namespace HtUserRegistration\Mapper;
 
 use ZfcUser\Entity\UserInterface;
 use HtUserRegistration\Entity\UserRegistration;
-use Zend\Hydrator\HydratorInterface;
+use Laminas\Hydrator\HydratorInterface;
 
 interface UserRegistrationMapperInterface
 {
@@ -22,7 +22,7 @@ interface UserRegistrationMapperInterface
      * @param  UserRegistration                             $entity
      * @param string|TableIdentifier|null $tableName
      * @param HydratorInterface|null $hydrator
-     * @return \Zend\Db\Adapter\Driver\ResultInterface|null
+     * @return \Laminas\Db\Adapter\Driver\ResultInterface|null
      */
     public function insert($entity, $tableName = null, HydratorInterface $hydrator = null);
 
@@ -33,7 +33,7 @@ interface UserRegistrationMapperInterface
      * @param string|array|closure $where
      * @param string|TableIdentifier|null $tableName
      * @param HydratorInterface|null $hydrator
-     * @return \Zend\Db\Adapter\Driver\ResultInterface|null
+     * @return \Laminas\Db\Adapter\Driver\ResultInterface|null
      */
     public function update($entity, $where = null, $tableName = null, HydratorInterface $hydrator = null);
 }

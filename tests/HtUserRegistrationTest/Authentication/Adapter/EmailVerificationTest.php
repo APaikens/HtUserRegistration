@@ -3,7 +3,7 @@
 namespace HtUserRegistrationTest\Authentication\Adapter;
 
 use HtUserRegistration\Authentication\Adapter\EmailVerification;
-use Zend\Authentication\Result as AuthenticationResult;
+use Laminas\Authentication\Result as AuthenticationResult;
 
 class EmailVerificationTest extends \PHPUnit_Framework_TestCase
 {
