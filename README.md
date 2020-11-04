@@ -15,7 +15,7 @@ A Laminas module which extends the registration feature of ZfcUser. When public 
 * Add `"hrevert/ht-user-registration": "0.0.*"`, to your composer.json and run `php composer.phar update` 
 * Enable this module in `config/application.config.php`
 * Copy file located in `vendor/hrevert/ht-user-registration/config/ht-user-registration.global.php` to `./config/autoload/ht-user-registration.global.php` and change the values as you wish.
-* Also, configure [MtMail](https://github.com/mtymek/MtMail/) as stated in the docs.
+* Also, configure [GoalioMailService](https://github.com/APaikens/GoalioForgotPassword) as stated in the docs.
 
 ## Note
 If you do not want unverified users to log in, this module also ships with a authentication adapter.

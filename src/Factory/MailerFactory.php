@@ -10,7 +10,7 @@ class MailerFactory implements FactoryInterface {
     public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = null) {
         return new Mailer(
                 $container->get('HtUserRegistration\ModuleOptions'),
-                $container->get('MtMail\Service\Mail')
+                $container->get('goaliomailservice_message')
         );
     }
 

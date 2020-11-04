@@ -2,7 +2,7 @@
 namespace HtUserRegistration\Mapper;
 
 use ZfcUser\Entity\UserInterface;
-use ZfcBase\Mapper\AbstractDbMapper;
+use HtUserRegistration\Mapper\AbstractDbMapper;
 use HtUserRegistration\Entity\UserRegistrationInterface;
 use Laminas\Hydrator\HydratorInterface;
 
