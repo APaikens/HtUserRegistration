@@ -1,7 +1,7 @@
 <?php
 namespace HtUserRegistrationTest\Factory;
 
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceManager;
 use HtUserRegistration\Factory\MailerFactory;
 use HtUserRegistration\Options\ModuleOptions;
 use GoalioMailService\Mail\Service\Message;

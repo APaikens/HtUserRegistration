@@ -2,7 +2,7 @@
 namespace HtUserRegistration\Authentication\Adapter;
 
 use ZfcUser\Authentication\Adapter\AbstractAdapter;
-use Zend\Authentication\Result as AuthenticationResult;
+use Laminas\Authentication\Result as AuthenticationResult;
 use ZfcUser\Authentication\Adapter\AdapterChainEvent;
 use HtUserRegistration\Mapper\UserRegistrationMapperInterface;
 use ZfcUser\Mapper\UserInterface as UserMapper;

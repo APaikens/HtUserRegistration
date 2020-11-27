@@ -3,13 +3,13 @@
 namespace HtUserRegistrationTest\Controller;
 
 use ZfcUser\Mapper\User;
-use Zend\ServiceManager\ServiceManager;
-use Zend\EventManager\StaticEventManager;
-use Zend\Http\Request;
-use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\SimpleRouteStack;
-use Zend\Mvc\Router\Http\Segment;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\EventManager\StaticEventManager;
+use Laminas\Http\Request;
+use Laminas\Mvc\Router\Http\RouteMatch;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Router\SimpleRouteStack;
+use Laminas\Mvc\Router\Http\Segment;
 use HtUserRegistration\Controller\UserRegistrationController;
 
 class UserRegistrationControllerTest extends \PHPUnit_Framework_TestCase
@@ -128,7 +128,7 @@ class UserRegistrationControllerTest extends \PHPUnit_Framework_TestCase
         $response = $this->controller->getResponse();
 
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertInstanceOf('Zend\View\Model\ViewModel', $result);
+        $this->assertInstanceOf('Laminas\View\Model\ViewModel', $result);
         $this->assertSame('ht-user-registration/user-registration/verify-email-error.phtml', $result->getTemplate());
     }
 

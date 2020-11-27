@@ -1,10 +1,10 @@
 <?php
 namespace HtUserRegistrationTest\Factory;
 
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceManager;
 use HtUserRegistration\Factory\UserRegistrationMapperFactory;
 use HtUserRegistration\Options\ModuleOptions;
-use Zend\Stdlib\Hydrator\ClassMethods;
+use Laminas\Stdlib\Hydrator\ClassMethods;
 
 class UserRegistrationMapperFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +13,7 @@ class UserRegistrationMapperFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager = new ServiceManager;
         $serviceManager->setService('HtUserRegistration\ModuleOptions', new ModuleOptions);
         $serviceManager->setService('HtUserRegistration\UserRegistrationHydrator', new ClassMethods);
-        $adapter = $this->getMockBuilder('Zend\Db\Adapter\Adapter')
+        $adapter = $this->getMockBuilder('Laminas\Db\Adapter\Adapter')
             ->disableOriginalConstructor()
             ->getMock();
         $serviceManager->setService('HtUserRegistration\DbAdapter', $adapter);

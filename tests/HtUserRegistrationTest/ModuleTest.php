@@ -2,10 +2,10 @@
 namespace HtUserRegistrationTest;
 
 use HtUserRegistration\Module;
-use Zend\EventManager\Event;
-use Zend\EventManager\EventManager;
-use Zend\ServiceManager\ServiceManager;
-use Zend\EventManager\SharedEventManager;
+use Laminas\EventManager\Event;
+use Laminas\EventManager\EventManager;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\EventManager\SharedEventManager;
 
 class ModuleTest extends \PHPUnit_Framework_TestCase
 {
@@ -20,8 +20,8 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
     public function testEventListenerIsAttached()
     {
         $module         = new Module();
-        $mvcEvent       = $this->getMock('Zend\EventManager\EventInterface');
-        $application    = $this->getMock('Zend\Mvc\Application', [], [], '', false);
+        $mvcEvent       = $this->getMock('Laminas\EventManager\EventInterface');
+        $application    = $this->getMock('Laminas\Mvc\Application', [], [], '', false);
         $eventManager   = new EventManager;
         $eventManager->setSharedManager(new SharedEventManager);
         $serviceManager = new ServiceManager;

@@ -8,14 +8,14 @@ HtUserRegistration
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hrevert/HtUserRegistration/badges/quality-score.png?s=df5869789fc1c3925a7a4ebc5d6d3c13ca032975)](https://scrutinizer-ci.com/g/hrevert/HtUserRegistration/)
 [![Code Coverage](https://scrutinizer-ci.com/g/hrevert/HtUserRegistration/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/hrevert/HtUserRegistration/?branch=master)
 
-A Zend Framework 2 module which extends the registration feature of ZfcUser. When public registration is enabled, it provides email address verfication feature and when public registration is disabled, it sends email to the user`s email address with a link to set their account password.
+A Laminas module which extends the registration feature of ZfcUser. When public registration is enabled, it provides email address verfication feature and when public registration is disabled, it sends email to the user`s email address with a link to set their account password.
 
 ## Installation
 
 * Add `"hrevert/ht-user-registration": "0.0.*"`, to your composer.json and run `php composer.phar update` 
 * Enable this module in `config/application.config.php`
 * Copy file located in `vendor/hrevert/ht-user-registration/config/ht-user-registration.global.php` to `./config/autoload/ht-user-registration.global.php` and change the values as you wish.
-* Also, configure [MtMail](https://github.com/mtymek/MtMail/) as stated in the docs.
+* Also, configure [GoalioMailService](https://github.com/APaikens/GoalioForgotPassword) as stated in the docs.
 
 ## Note
 If you do not want unverified users to log in, this module also ships with a authentication adapter.

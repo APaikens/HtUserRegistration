@@ -3,7 +3,6 @@ namespace HtUserRegistration\Mailer;
 
 use HtUserRegistration\Entity\UserRegistrationInterface;
 use HtUserRegistration\Options\ModuleOptions;
-use MtMail\Service\Mail as MailService;
 
 class Mailer implements MailerInterface
 {
@@ -23,7 +22,7 @@ class Mailer implements MailerInterface
      * @param ModuleOptions $options
      * @param MailService $mailService
      */
-    public function __construct(ModuleOptions $options, MailService $mailService)
+    public function __construct(ModuleOptions $options, $mailService)
     {
         $this->options      = $options;
         $this->mailService  = $mailService;
@@ -63,19 +62,14 @@ class Mailer implements MailerInterface
     protected function sendMail(UserRegistrationInterface $registrationRecord, $subject, $template)
     {
         $user = $registrationRecord->getUser();
-        $message = $this->mailService->compose(
-            ['to' => $user->getEmail()], 
-            $template, 
-            ['user' => $user, 'registrationRecord' => $registrationRecord]
-        );
-
         $fromEmail = $this->options->getEmailFromAddress();
-        if ($fromEmail) {
-            $message->setFrom($fromEmail);
+        $from = '';
+        if(!empty($fromEmail)){
+            $from = (isset($fromEmail[0]))?$fromEmail[0]:'';
         }
-
-        $message->setSubject($subject);
-
-        return $this->mailService->send($message);        
+        $to = $user->getEmail();
+        $data = ['user' => $user, 'registrationRecord' => $registrationRecord];
+        $message = $this->mailService->createHtmlMessage($from, $to, $subject, $template, $data);
+        return $this->mailService->send($message);
     }
 }

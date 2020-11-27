@@ -2,7 +2,7 @@
 
 namespace HtUserRegistrationTest\Controller\Factory;
 
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceManager;
 use HtUserRegistration\Controller\Factory\UserRegistrationFactory;
 
 class UserRegistrationFactoryTest extends \PHPUnit_Framework_TestCase
@@ -16,7 +16,7 @@ class UserRegistrationFactoryTest extends \PHPUnit_Framework_TestCase
                         ->getMock()
         );
 
-        $controller = $this->getMock('Zend\Mvc\Controller\ControllerManager');
+        $controller = $this->getMock('Laminas\Mvc\Controller\ControllerManager');
         $controller->expects($this->once())
                 ->method('getServiceLocator')
                 ->will($this->returnValue($serviceManager));

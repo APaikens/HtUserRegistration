@@ -2,7 +2,7 @@
 
 namespace HtUserRegistrationTest\Authentication\Adapter;
 
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceManager;
 use HtUserRegistration\Mapper\UserRegistrationMapper;
 use ZfcUser\Mapper\User;
 use HtUserRegistration\Authentication\Adapter\EmailVerificationFactory;

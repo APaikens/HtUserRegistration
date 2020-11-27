@@ -2,18 +2,17 @@
 namespace HtUserRegistration\Service;
 
 use HtUserRegistration\Mapper\UserRegistrationMapperInterface;
-use Zend\EventManager\EventInterface;
+use Laminas\EventManager\EventInterface;
 use ZfcUser\Entity\UserInterface;
-use ZfcBase\EventManager\EventProvider;
 use DateTime;
 use HtUserRegistration\Entity\UserRegistrationInterface;
 use HtUserRegistration\Mailer\MailerInterface;
-use Zend\Crypt\Password\Bcrypt;
+use Laminas\Crypt\Password\Bcrypt;
 use HtUserRegistration\Options\ModuleOptions;
 use ZfcUser\Options\ModuleOptions as ZfcUserOptions;
 use ZfcUser\Mapper\UserInterface as UserMapperInterface;
 
-class UserRegistrationService extends EventProvider implements UserRegistrationServiceInterface
+class UserRegistrationService implements UserRegistrationServiceInterface
 {
     
     /**
@@ -108,11 +107,8 @@ class UserRegistrationService extends EventProvider implements UserRegistrationS
     {
         $entityClass = $this->getOptions()->getRegistrationEntityClass();
         $entity = new $entityClass($user);
-        $this->getEventManager()->trigger(__FUNCTION__, $this, array('user' => $user, 'record' => $entity));
         $entity->generateToken();
         $this->getUserRegistrationMapper()->insert($entity);
-        $this->getEventManager()->trigger(__FUNCTION__ . '.post', $this, array('user' => $user, 'record' => $entity));
-
         return $entity;
     }
 
@@ -122,8 +118,6 @@ class UserRegistrationService extends EventProvider implements UserRegistrationS
     public function verifyEmail(UserInterface $user, $token)
     {
         $record = $this->getUserRegistrationMapper()->findByUser($user);
-        $this->getEventManager()->trigger(__FUNCTION__, $this, array('user' => $user, 'token' => $token, 'record' => $record));
-
         if (!$record || !$this->isTokenValid($user, $token, $record)) {
             return false;
         }
@@ -131,9 +125,6 @@ class UserRegistrationService extends EventProvider implements UserRegistrationS
             $record->setResponded(UserRegistrationInterface::EMAIL_RESPONDED);
             $this->getUserRegistrationMapper()->update($record);
         }
-
-        $this->getEventManager()->trigger(__FUNCTION__ . '.post', $this, array('user' => $user, 'token' => $token, 'record' => $record));
-
         return true;
     }
 
@@ -143,16 +134,10 @@ class UserRegistrationService extends EventProvider implements UserRegistrationS
     public function isTokenValid(UserInterface $user, $token, UserRegistrationInterface $record)
     {
         if ($record->getToken() !== $token) {
-            $this->getEventManager()->trigger('tokenInvalid', $this, array('user' => $user, 'token' => $token, 'record' => $record));
-
             return false;
         } elseif ($this->getOptions()->getEnableRequestExpiry() && $this->isTokenExpired($record)) {
-            $this->getEventManager()->trigger('tokenExpired', $this, array('user' => $user, 'token' => $token, 'record' => $record));
-
             return false;
         }
-        $this->getEventManager()->trigger('tokenValid', $this, array('user' => $user, 'token' => $token, 'record' => $record));
-
         return true;
     }
 
@@ -180,11 +165,9 @@ class UserRegistrationService extends EventProvider implements UserRegistrationS
         $pass = $bcrypt->create($newPass);
         $user->setPassword($pass);
 
-        $this->getEventManager()->trigger(__FUNCTION__, $this, array('user' => $user, 'record' => $registrationRecord));
         $this->getUserMapper()->update($user);
         $registrationRecord->setResponded(UserRegistrationInterface::EMAIL_RESPONDED);
         $this->getUserRegistrationMapper()->update($registrationRecord);
-        $this->getEventManager()->trigger(__FUNCTION__ . '.post', $this, array('user' => $user, 'record' => $registrationRecord));
     }
 
     /**

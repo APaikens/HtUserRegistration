@@ -1,7 +1,7 @@
 <?php
 namespace HtUserRegistration\Service;
 
-use Zend\EventManager\EventInterface;
+use Laminas\EventManager\EventInterface;
 use ZfcUser\Entity\UserInterface;
 use HtUserRegistration\Entity\UserRegistrationInterface;
 

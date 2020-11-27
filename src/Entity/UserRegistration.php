@@ -3,7 +3,7 @@
 namespace HtUserRegistration\Entity;
 
 use DateTime;
-use Zend\Math\Rand;
+use Laminas\Math\Rand;
 use ZfcUser\Entity\UserInterface;
 
 class UserRegistration implements UserRegistrationInterface

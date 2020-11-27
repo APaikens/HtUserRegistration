@@ -1,7 +1,7 @@
 <?php
 namespace HtUserRegistration\Stdlib\Hydrator;
 
-use Zend\Hydrator\ClassMethods;
+use Laminas\Hydrator\ClassMethods;
 use HtUserRegistration\Entity\UserRegistration;
 
 class UserRegistrationHydrator extends ClassMethods
