@@ -63,13 +63,13 @@ class Mailer implements MailerInterface
     {
         $user = $registrationRecord->getUser();
         $fromEmail = $this->options->getEmailFromAddress();
-        $from = '';
-        if(!empty($fromEmail)){
-            $from = (isset($fromEmail[0]))?$fromEmail[0]:'';
-        }
+        //$from = '';
+        //if(!empty($fromEmail)){
+//            $from = (isset($fromEmail[0]))?$fromEmail[0]:'';
+//        }
         $to = $user->getEmail();
         $data = ['user' => $user, 'registrationRecord' => $registrationRecord];
-        $message = $this->mailService->createHtmlMessage($from, $to, $subject, $template, $data);
+        $message = $this->mailService->createHtmlMessage($fromEmail, $to, $subject, $template, $data);
         return $this->mailService->send($message);
     }
 }
